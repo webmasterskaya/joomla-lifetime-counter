@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.8" client="site" method="upgrade">
+    <name>MOD_LIFETIME_COUNTER</name>
+    <creationDate>20.05.2020</creationDate>
+    <author>Артём</author>
+    <authorEmail>your@email.com</authorEmail>
+    <authorUrl>http://your.url.com</authorUrl>
+    <copyright>A copyright</copyright>
+    <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+    <version>__DEPLOY_VERSION__</version>
+    <description>MOD_LIFETIME_COUNTER_XML_DESCRIPTION</description>
+    <scriptfile>script.php</scriptfile>
+
+	<languages folder="language">
+		<language tag="en-GB">en-GB/en-GB.mod_lifetime_counter.ini</language>
+		<language tag="en-GB">en-GB/en-GB.mod_lifetime_counter.sys.ini</language>
+	</languages>
+
+    <files>
+        <filename module="mod_lifetime_counter">mod_lifetime_counter.php</filename>
+        <folder>tmpl</folder>
+        <filename>mod_lifetime_counter.xml</filename>
+    </files>
+
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field
+                        name="start_counter"
+                        type="number"
+                        label="Начальное число для отсчёта"
+                        default="0"
+                />
+                <field
+                        name="start_date"
+                        type="calendar"
+                        label="Начальная дата отсчёта"
+                        filter="user_utc"
+                        showtime="false"
+                        todaybutton="false"
+                        filltable="false"
+                        translateformat="true"
+                        default="NOW"
+                        minyear="-8"
+                        maxyear="0"
+                />
+                <field
+                        name="plus"
+                        type="number"
+                        label="Увеличивать в обычный день"
+                        default="1"
+                />
+                <field
+                        name="plus_pre_holiday"
+                        type="number"
+                        label="Увеличивать в предпразднечный день"
+                        default="0"
+                />
+                <field
+                        name="plus_holiday"
+                        type="number"
+                        label="Увеличивать в празднечный день"
+                        default="0"
+                />
+                <field
+                        name="plus_weekend"
+                        type="number"
+                        label="Увеличивать в выходной день"
+                        default="0"
+                />
+                <field
+                        name="pre_text"
+                        type="textarea"
+                        filter="raw"
+                        rows="10"
+                        cols="120"
+                        label="Текст перед счётчиком"
+                        default=""
+                />
+                <field
+                        name="pos_ttext"
+                        type="textarea"
+                        filter="raw"
+                        rows="10"
+                        cols="120"
+                        label="Текст после счётчика"
+                        default=""
+                />
+            </fieldset>
+            <fieldset
+                    name="advanced">
+                <field
+                        name="moduleclass_sfx"
+                        type="text"
+                        label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+                        description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC"/>
+            </fieldset>
+        </fields>
+    </config>
+</extension>
