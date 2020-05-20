@@ -10,14 +10,25 @@
 
 defined('_JEXEC') or die;
 
+$style = '';
+$id    = '';
+if (!empty($backgroundimage))
+{
+	$style = ' style="background-image: url(' . $backgroundimage . ');';
+}
+if (!empty($moduleid))
+{
+	$id = ' id="' . $moduleid . '"';
+}
+
 ?>
 
-<div class="lifetime-counter-container">
-    <?php if(!empty($preText)): ?>
+<div class="lifetime-counter-container <?php echo $moduleclass; ?>"<?php echo $style; ?><?php echo $id; ?>>
+	<?php if (!empty($preText)): ?>
         <span class="lifetime-counter-pretext"><?php echo $preText; ?></span>
-    <?php endif; ?>
+	<?php endif; ?>
     <span class="lifetime-counter-counter"><?php echo $counter; ?></span>
-	<?php if(!empty($postText)): ?>
+	<?php if (!empty($postText)): ?>
         <span class="lifetime-counter-posttext"><?php echo $postText; ?></span>
 	<?php endif; ?>
 </div>

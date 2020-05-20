@@ -119,7 +119,9 @@ if (empty($counter))
 
 $preText  = $params->get('pre_text', '');
 $postText = $params->get('pos_ttext', '');
+$backgroundimage = $params->get('backgroundimage', '');
 
-$moduleclass_sfx = htmlspecialchars($params->get('moduleclass_sfx'));
+$moduleclass = htmlspecialchars($params->get('moduleclass', ''));
+$moduleid = htmlspecialchars($params->get('moduleid', ''));
 
 require ModuleHelper::getLayoutPath('mod_lifetime_counter', $params->get('layout', 'default'));
