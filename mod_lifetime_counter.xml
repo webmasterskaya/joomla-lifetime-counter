@@ -7,7 +7,7 @@
     <authorUrl>http://your.url.com</authorUrl>
     <copyright>A copyright</copyright>
     <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
-    <version>1.0.0</version>
+    <version>__DEPLOY_VERSION__</version>
     <description>MOD_LIFETIME_COUNTER_XML_DESCRIPTION</description>
     <scriptfile>script.php</scriptfile>
 
