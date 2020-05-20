@@ -20,38 +20,40 @@ if(!class_exists('ProductionCalendar'))
 	return false;
 }
 
-function checkHolidays(&$date, &$days)
-{
-	if (ProductionCalendar::isWeekend($date))
+if(!function_exists('checkHolidays')){
+	function checkHolidays(&$date, &$days)
 	{
-		$days['w']++;
-
-		return;
-	}
-	else
-	{
-		if (ProductionCalendar::isPreHoliday($date))
+		if (ProductionCalendar::isWeekend($date))
 		{
-			$days['p']++;
+			$days['w']++;
 
 			return;
 		}
 		else
 		{
-			if (ProductionCalendar::isHoliday($date))
+			if (ProductionCalendar::isPreHoliday($date))
 			{
-				$days['h']++;
+				$days['p']++;
 
 				return;
 			}
 			else
 			{
-				$days['o']++;
+				if (ProductionCalendar::isHoliday($date))
+				{
+					$days['h']++;
+
+					return;
+				}
+				else
+				{
+					$days['o']++;
+				}
 			}
 		}
-	}
 
-	return;
+		return;
+	}
 }
 
 $startDate = new Date($params->get('start_date', 'NOW'));
