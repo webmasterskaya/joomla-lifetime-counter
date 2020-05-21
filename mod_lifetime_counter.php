@@ -23,9 +23,9 @@ if(!class_exists('ProductionCalendar'))
 if(!function_exists('checkHolidays')){
 	function checkHolidays(&$date, &$days)
 	{
-		if (ProductionCalendar::isWeekend($date))
+		if (ProductionCalendar::isHoliday($date))
 		{
-			$days['w']++;
+			$days['h']++;
 
 			return;
 		}
@@ -39,9 +39,9 @@ if(!function_exists('checkHolidays')){
 			}
 			else
 			{
-				if (ProductionCalendar::isHoliday($date))
+				if (ProductionCalendar::isWeekend($date))
 				{
-					$days['h']++;
+					$days['w']++;
 
 					return;
 				}
@@ -56,8 +56,8 @@ if(!function_exists('checkHolidays')){
 	}
 }
 
-$startDate = new Date($params->get('start_date', 'NOW'));
-$nowDate   = new Date('NOW');
+$startDate = new Date($params->get('start_date', 'TODAY'));
+$nowDate   = new Date('TODAY');
 $difDate   = $startDate->diff($nowDate);
 
 if ($difDate->days === 0)
@@ -86,20 +86,22 @@ else
 
 	if ($difDate->invert === 0)
 	{
-		while ($startDate <= $nowDate)
+		do
 		{
 			checkHolidays($startDate, $days);
 			$startDate->modify('+1 day');
-		}
+		} while ($startDate < $nowDate);
 	}
 	else
 	{
-		while ($nowDate <= $startDate)
+		do
 		{
 			checkHolidays($nowDate, $days);
 			$nowDate->modify('+1 day');
-		}
+		} while ($nowDate < $startDate);
 	}
+
+
 
 	$counter += $days['o'] * $plusDay;
 	$counter += $days['w'] * $plusW;
